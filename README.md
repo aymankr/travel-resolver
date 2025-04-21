@@ -50,22 +50,16 @@ Accessible aux développeurs ou data annotators :
 
 ## 🚀 Setup et déploiement
 
-### 1. Cloner le dépôt
-```bash
-git clone https://github.com/votre-utilisateur/trainquest.git
-cd trainquest
-```
-
-### 2. Configuration (optionnelle)
+### 1. Configuration (optionnelle)
 Créer un fichier `.env` si nécessaire pour personnaliser les paramètres (port, DB, etc.).
 
-### 3. Décommenter les services de training (si besoin)
+### 2. Décommenter les services de training (si besoin)
 Dans `docker-compose.yml`, décommenter les services suivants pour réentraîner :
 - `nlu-trainer`
 - `ner-trainer`
 - `create-dataset`
 
-### 4. Lancer l’application
+### 3. Lancer l’application
 ```bash
 docker compose up --build
 ```
