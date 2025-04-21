@@ -1,0 +1,10 @@
+.DS_Store
+**/__pycache__/
+/machine_learning/ner/fine_tuned_models
+/machine_learning/nlu/cache
+/machine_learning/nlu/logs
+/machine_learning/nlu/results
+/machine_learning/nlu/fine_tuned_models
+/nlu/nlu_fine_tuned_models
+/ner/ner_fine_tuned_models
+/back/.env

@@ -1,0 +1,172 @@
+services:
+  # create-dataset:
+  #   build:
+  #     context: ./machine_learning/dataset
+  #     dockerfile: Dockerfile
+  #   depends_on:
+  #     - back
+  #   volumes:
+  #     - ./machine_learning/dataset:/app
+  #   networks:
+  #     - backend-network
+
+  # ner-trainer:
+  #   build:
+  #     context: ./machine_learning/ner
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./machine_learning/ner/fine_tuned_models:/app/models
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+  #     - MODEL_OUTPUT_DIR=/app/models/
+  #   depends_on:
+  #     - back
+  #   networks:
+  #     - backend-network
+
+  # nlu-trainer:
+  #   build:
+  #     context: ./machine_learning/nlu
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./machine_learning/nlu/fine_tuned_models:/app/models
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+  #     - MODEL_OUTPUT_DIR=/app/models/
+  #   depends_on:
+  #     - back
+  #   networks:
+  #     - backend-network
+
+  ner:
+    build:
+      context: ./ner
+      dockerfile: Dockerfile
+    volumes:
+      - ./ner:/app
+      - ./ner/ner_fine_tuned_models:/app/ner_fine_tuned_models
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - PYTHONPATH=/app
+    networks:
+      - backend-network
+
+  nlu:
+    build:
+      context: ./nlu
+      dockerfile: Dockerfile
+    volumes:
+      - ./nlu:/app
+      - ./nlu/nlu_fine_tuned_models:/app/nlu_fine_tuned_models
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - PYTHONPATH=/app
+    networks:
+      - backend-network
+
+  whisper:
+    build:
+      context: ./whisper
+      dockerfile: Dockerfile
+    volumes:
+      - ./whisper:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - PYTHONPATH=/app
+    networks:
+      - backend-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - web
+      - back
+      - adminer
+    networks:
+      - web-network
+      - public-network
+      - backend-network
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    depends_on:
+      - back
+    networks:
+      - web-network
+
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    volumes:
+      - ./back:/app
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - PYTHONPATH=/app
+    depends_on:
+      - db
+      - ner
+      - nlu
+      - whisper
+    networks:
+      - backend-network
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - backend-network
+
+  adminer:
+    image: adminer:latest
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
+      - ADMINER_DESIGN=dracula
+    networks:
+      - backend-network
+      - public-network
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - public-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  portainer_data:
+
+networks:
+  web-network:
+    driver: bridge
+  backend-network:
+    driver: bridge
+  public-network:
+    driver: bridge

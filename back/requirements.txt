@@ -1,0 +1,17 @@
+flask
+flask-cors
+spacy==3.7
+spacy-langdetect
+transformers
+torch
+pandas
+networkx
+flask-sqlalchemy
+flask-migrate
+psycopg2-binary
+python-dotenv
+pyxdameraulevenshtein
+flask-login 
+werkzeug
+pyjwt
+requests
