@@ -50,7 +50,7 @@ Accessible to developers or data annotators :
 ## 🚀 Setup and Deployment
 
 ### 1. Configuration (optional)
-Create a `.env` file if necessary to customize parameters (port, DB, etc.).
+Create a `.env` file to set parameters.
 
 ### 2. Uncomment training services (if needed)
 In `docker-compose.yml`, uncomment the following services to retrain :
