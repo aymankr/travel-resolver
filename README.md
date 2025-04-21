@@ -1,78 +1,77 @@
-
 # 🧭 TrainQuest – Travel Order Resolver
 
-## 📝 Présentation du projet
+## 📝 Project Presentation
 
-**TrainQuest** est une application web intelligente permettant à un utilisateur de formuler une demande de voyage en français, par texte ou micro, pour obtenir en retour un ou plusieurs trajets optimisés entre deux villes françaises.  
-Ce projet repose sur des modèles NLP spécialisés (NLU/NER/Whisper), une architecture microservices dockerisée et une logique de graphe (algorithme de Dijkstra).
+**TrainQuest** is a smart web application that allows a user to formulate a travel request in French, by text or voice, to obtain one or more optimized routes between two French cities in return.  
+This project is based on specialized NLP models (NLU/NER/Whisper), a dockerized microservices architecture, and a graph logic (Dijkstra algorithm).
 
-Projet réalisé en **équipe de 4 personnes**, dans le cadre d’un module d’intelligence artificielle et microservices.
-
----
-
-## ⚙️ Fonctionnalités
-
-- 🧠 **Analyse du langage naturel** : détection d’intention (NLU) et des entités villes (NER)
-- 🎙️ **Reconnaissance vocale** : via Whisper (modèle Hugging Face)
-- 🗺️ **Calcul d’itinéraires optimisés** via Dijkstra (graphe ferroviaire)
-- 🌐 **Interface utilisateur** claire avec résultats visuels et cartographiques
-- ⚙️ **Admin Panel** complet : suivi des modèles, données, phrases et entités
+Project completed by a **team of 4 people**, as part of an artificial intelligence and microservices module.
 
 ---
 
-## 🧱 Architecture technique
+## ⚙️ Features
+
+- 🧠 **Natural Language Analysis** : intention detection (NLU) and city entities (NER)
+- 🎙️ **Speech Recognition** : via Whisper (Hugging Face model)
+- 🗺️ **Optimized Route Calculation** via Dijkstra (railway graph)
+- 🌐 **User Interface** clear with visual and cartographic results
+- ⚙️ **Admin Panel** complete : model tracking, data, phrases, and entities
+
+---
+
+## 🧱 Technical Architecture
 
 - **Frontend** : React + Vite.js
 - **Backend** :
-  - `back` : service central Flask
-  - `nlu`, `ner`, `whisper` : microservices IA Flask
-- **Algorithme** : Dijkstra sur graphe SNCF
+  - `back` : central Flask service
+  - `nlu`, `ner`, `whisper` : IA Flask microservices
+- **Algorithm** : Dijkstra on SNCF graph
 - **Database** : PostgreSQL
 - **Reverse Proxy** : NGINX
-- **Supervision** : Portainer (containers), Adminer (base de données)
+- **Supervision** : Portainer (containers), Adminer (database)
 
 ---
 
-## 🧪 Panel d’administration
+## 🧪 Administration Panel
 
-Accessible aux développeurs ou data annotators :
-- 🔍 **Monitoring des modèles** : version, date, précision, temps d’entraînement, dataset utilisé
-- 🧮 **Statistiques globales** :
-  - Total de phrases traitées / non traitées
-  - Validées / invalidées
-- ✍️ **Correction de phrases** :
-  - Modification des entités reconnues (départ / arrivée)
-  - Marquage de traitement (treated / untreated)
-- 🗃️ **Gestion des villes** pour le graphe ferroviaire
-- 📊 **Visualisation des scores** : F1, précision, rappel pour NER et NLU
+Accessible to developers or data annotators :
+- 🔍 **Model Monitoring** : version, date, accuracy, training time, dataset used
+- 🧮 **Global Statistics** :
+  - Total of processed / unprocessed sentences
+  - Validated / invalidated
+- ✍️ **Sentence Correction** :
+  - Modification of recognized entities (departure / arrival)
+  - Treatment marking (treated / untreated)
+- 🗃️ **City Management** for the railway graph
+- 📊 **Score Visualization** : F1, precision, recall for NER and NLU
 
 ---
 
-## 🚀 Setup et déploiement
+## 🚀 Setup and Deployment
 
-### 1. Configuration (optionnelle)
-Créer un fichier `.env` si nécessaire pour personnaliser les paramètres (port, DB, etc.).
+### 1. Configuration (optional)
+Create a `.env` file if necessary to customize parameters (port, DB, etc.).
 
-### 2. Décommenter les services de training (si besoin)
-Dans `docker-compose.yml`, décommenter les services suivants pour réentraîner :
+### 2. Uncomment training services (if needed)
+In `docker-compose.yml`, uncomment the following services to retrain :
 - `nlu-trainer`
 - `ner-trainer`
 - `create-dataset`
 
-### 3. Lancer l’application
+### 3. Launch the application
 ```bash
 docker compose up --build
 ```
-Accès via `http://localhost`
+Access via `http://localhost`
 
 ---
 
-## 🖼️ Aperçus de l’application
+## 🖼️ Application Previews
 
-- Écran d’accueil avec champ de requête vocale ou textuelle  
-- Résultats de l’analyse NLU/NER  
-- Itinéraires proposés et visualisation cartographique  
-- Interface Admin : validation de phrases, édition d’entités, suivi de modèles
+- Home screen with vocal or textual request field  
+- NLU/NER analysis results  
+- Proposed routes and cartographic visualization  
+- Admin Interface : phrase validation, entity editing, model tracking
 
 
 ![1-Crq0NjYZ](screens/1-Crq0NjYZ.webp)
@@ -90,7 +89,7 @@ Accès via `http://localhost`
 
 ---
 
-## 🧰 Stack technique
+## 🧰 Technical Stack
 
 - Python (Flask, NLU, NER, Whisper)
 - React, Vite.js
