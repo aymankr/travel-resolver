@@ -1,5 +1,28 @@
 # 🧭 TrainQuest – Travel Order Resolver
 
+---
+
+## 🖼️ Application Previews
+
+- Home screen with vocal or textual request field  
+- NLU/NER analysis results  
+- Proposed routes and cartographic visualization  
+- Admin Interface : phrase validation, entity editing, model tracking
+
+
+![1-Crq0NjYZ](screens/1-Crq0NjYZ.webp)
+![2-DTOP4gX9](screens/2-DTOP4gX9.webp)
+![3-t2rV4H2z](screens/3-t2rV4H2z.webp)
+![4-DeZP8v6C](screens/4-DeZP8v6C.webp)
+![5-B1YkG7DI](screens/5-B1YkG7DI.webp)
+![6-DRTqeno3](screens/6-DRTqeno3.webp)
+![7-DR4151Dl](screens/7-DR4151Dl.webp)
+![8-Bw13VuDt](screens/8-Bw13VuDt.webp)
+![9-DSG6Y31i](screens/9-DSG6Y31i.webp)
+![10-BjquKFCF](screens/10-BjquKFCF.webp)
+![11-YeuujjdL](screens/11-YeuujjdL.webp)
+![12-NU62LsLY](screens/12-NU62LsLY.webp)
+
 ## 📝 Project Presentation
 
 **TrainQuest** is a smart web application that allows a user to formulate a travel request in French, by text or voice, to obtain one or more optimized routes between two French cities in return.  
@@ -63,29 +86,6 @@ In `docker-compose.yml`, uncomment the following services to retrain :
 docker compose up --build
 ```
 Access via `http://localhost`
-
----
-
-## 🖼️ Application Previews
-
-- Home screen with vocal or textual request field  
-- NLU/NER analysis results  
-- Proposed routes and cartographic visualization  
-- Admin Interface : phrase validation, entity editing, model tracking
-
-
-![1-Crq0NjYZ](screens/1-Crq0NjYZ.webp)
-![2-DTOP4gX9](screens/2-DTOP4gX9.webp)
-![3-t2rV4H2z](screens/3-t2rV4H2z.webp)
-![4-DeZP8v6C](screens/4-DeZP8v6C.webp)
-![5-B1YkG7DI](screens/5-B1YkG7DI.webp)
-![6-DRTqeno3](screens/6-DRTqeno3.webp)
-![7-DR4151Dl](screens/7-DR4151Dl.webp)
-![8-Bw13VuDt](screens/8-Bw13VuDt.webp)
-![9-DSG6Y31i](screens/9-DSG6Y31i.webp)
-![10-BjquKFCF](screens/10-BjquKFCF.webp)
-![11-YeuujjdL](screens/11-YeuujjdL.webp)
-![12-NU62LsLY](screens/12-NU62LsLY.webp)
 
 ---
 
